@@ -175,6 +175,7 @@ public class PokerHand
     public int pokerHandSum;
     public int highestCard;
     public int onePairSum;
+    public boolean hasRanking;
    
     PokerHand(String hand)
     {
@@ -194,10 +195,62 @@ public class PokerHand
     	
     	// Add here all possible ranking hands from higher to lower ranking
     	
-    	
     	printHand(pokerHand);
     	
-    	setHighCard(pokerHand); // 10
+    	// check if a high ranking is made if it is do not run all methods
+    	
+    	if(!hasRanking)
+    	{
+    		isRoyalFlush(pokerHand); // 1
+    	}
+    	
+    	if(!hasRanking)
+    	{
+    		isStraightFlush(pokerHand); // 2
+    	}
+    	
+    	if(!hasRanking)
+    	{
+    		isFourOfAKind(pokerHand); // 3
+    	}
+    	
+    	if(!hasRanking)
+    	{
+        	isFullHouse(pokerHand); // 4
+    	}
+    	
+    	if(!hasRanking)
+    	{
+        	isFlush(pokerHand); // 5
+    	}
+    	
+    	if(!hasRanking)
+    	{
+        	isStraight(pokerHand); // 6
+    	}
+    	
+    	if(!hasRanking)
+    	{
+        	isThreeOfAKind(pokerHand); // 7
+    	}
+    	
+    	if(!hasRanking)
+    	{
+        	isTwoPairs(pokerHand); // 8
+    	}
+    	
+    	if(!hasRanking)
+    	{
+        	isOnePair(pokerHand); // 9
+    	}
+    	
+    	if(!hasRanking)
+    	{
+        	setHighCard(pokerHand); // 10
+    	}
+    	
+    	
+    	/*setHighCard(pokerHand); // 10
     	isOnePair(pokerHand); // 9
     	isTwoPairs(pokerHand); // 8
     	isThreeOfAKind(pokerHand); // 7
@@ -207,7 +260,7 @@ public class PokerHand
     	isFourOfAKind(pokerHand); // 3
     	isStraightFlush(pokerHand); // 2
     	isRoyalFlush(pokerHand); // 1
-    	
+*/    	
     	System.out.println("Ranking = " + this.pokerHandRanking + " Sum of values = " + this.pokerHandSum);
     	// Before sort
     	// System.out.println("Before sort...");
@@ -255,6 +308,7 @@ public class PokerHand
     		this.pokerHandRanking = 9;
     		//System.out.println("One pair!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}
     	
     	return isOnePair;
@@ -278,6 +332,7 @@ public class PokerHand
     		this.pokerHandRanking = 8;
     		//System.out.println("Two pairs!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}
     	
     	return isTwoPairs;
@@ -302,6 +357,7 @@ public class PokerHand
     		this.pokerHandRanking = 7;
     		//System.out.println("Three of a kind!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}    	
     	
     	return isThreeOfAKind;
@@ -319,6 +375,7 @@ public class PokerHand
     		this.pokerHandRanking = 6;
     		//System.out.println("Straight!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}
     	
     	return isStraight;
@@ -336,6 +393,7 @@ public class PokerHand
     		this.pokerHandRanking = 5;
     		//System.out.println("Flush!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}   	
     	
     	//System.out.println("Ranking = " + this.pokerHandRanking + " Sum of values = " + this.pokerHandSum);
@@ -394,6 +452,7 @@ public class PokerHand
     		this.pokerHandRanking = 4;
     		//System.out.println("Full House!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}
     	
     	return isFullHouse;
@@ -420,6 +479,7 @@ public class PokerHand
     		this.pokerHandRanking = 3;
     		//System.out.println("Four of a kind!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}
     	
     	return isFourOfAKind;
@@ -438,6 +498,7 @@ public class PokerHand
     		this.pokerHandRanking = 2;
     		//System.out.println("Straight Flush!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}
     	
     	// System.out.println("Ranking = " + this.pokerHandRanking + " Sum of values = " + this.pokerHandSum);
@@ -468,6 +529,7 @@ public class PokerHand
     		this.pokerHandRanking = 1;
     		//System.out.println("Royal Flush!");
     		sumAllValues(pokerHand);
+    		this.hasRanking = true;
     	}
     	
     	return isRoyalFlush;
