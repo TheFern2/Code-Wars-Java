@@ -1,33 +1,21 @@
+/*
+ * Ranking Poker Hands
+ * https://www.codewars.com/kata/ranking-poker-hands
+ * 
+ * This kata is 4 kyu difficulty
+ * 
+ * Fernando Balandran
+ * 
+ */
+
 import java.util.*;
-
-
 
 public class PokerHand
 {      
     
 	class Card implements Comparable<Card>
 	{
-			/*public enum Suit {
-			S(0), H(1), D(2), C(3);
-			private int suitValue;
-			
-			private Suit(int suitValue)
-			{
-				this.suitValue = suitValue;
-			}
-		}*/
-		
-		/*public enum Rank {
-			ACE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), JACK(11), QUEEN(12), KING(13);
-			private int rankValue;
-			
-			private Rank(int rankValue)
-			{
-				this.rankValue = rankValue;
-			}
-		}*/
-		
-		/**
+			/**
 		    * This card's suit, one of the constants SPADES, HEARTS, DIAMONDS,
 		    * CLUBS, or JOKER.  The suit cannot be changed after the card is
 		    * constructed.
@@ -137,7 +125,6 @@ public class PokerHand
 			setValue(rankValueChar);
 			setSuit(suitChar);
 			
-			// System.out.println(toString()); have custom print method now in pokerHand class
 		}
 
 		@Override
@@ -159,9 +146,7 @@ public class PokerHand
 			
 			// ascending order
 			return this.value - compareValue;
-			
-			// descending order
-			// return compareValue - this.value;
+
 		}
 		
 	}
@@ -179,7 +164,7 @@ public class PokerHand
    
     PokerHand(String hand)
     {
-    	// Need to split the hand input values into 5 Cards
+    	// Split the hand input values into 5 Cards
     	splitHand = hand.split(" ");
     	
     	// From the splitHand array need to initialize 5 Cards with those values
@@ -190,14 +175,12 @@ public class PokerHand
     	
     	Collections.sort(pokerHand);
     	
-    	// Check poker hand rankings here, assign hand ranking 1-10
-    	// Also assign sum of all values
-    	
-    	// Add here all possible ranking hands from higher to lower ranking
-    	
-    	printHand(pokerHand);
-    	
-    	// check if a high ranking is made if it is do not run all methods
+    	 /*
+    	  * Check poker hand rankings here, assign hand ranking 1-10
+    	  * Also assign sum of all values 
+    	  * Add here all possible ranking hands from higher to lower ranking
+    	  * Check if a high ranking is made if it is do not run all methods 	
+    	 */
     	
     	if(!hasRanking)
     	{
@@ -248,30 +231,7 @@ public class PokerHand
     	{
         	setHighCard(pokerHand); // 10
     	}
-    	
-    	
-    	/*setHighCard(pokerHand); // 10
-    	isOnePair(pokerHand); // 9
-    	isTwoPairs(pokerHand); // 8
-    	isThreeOfAKind(pokerHand); // 7
-    	isStraight(pokerHand); // 6
-    	isFlush(pokerHand); // 5
-    	isFullHouse(pokerHand); // 4
-    	isFourOfAKind(pokerHand); // 3
-    	isStraightFlush(pokerHand); // 2
-    	isRoyalFlush(pokerHand); // 1
-*/    	
-    	System.out.println("Ranking = " + this.pokerHandRanking + " Sum of values = " + this.pokerHandSum);
-    	// Before sort
-    	// System.out.println("Before sort...");
-    	//printHand(pokerHand);
-    	
-    	// Let's make a copy of poker hand prior to sorting
-    	// Collections.copy(pokerHand, sortedPokerHand);
-    	
-    	
-    	
-    	
+    	 	
     }
     
     // High card
@@ -281,7 +241,6 @@ public class PokerHand
     	this.highestCard = cards.get(4).getValue();
     	this.pokerHandRanking = 10;
     	sumAllValues(pokerHand);
-    	System.out.println("Highest card = " + this.highestCard);
     }
     
     // One pair
@@ -297,7 +256,6 @@ public class PokerHand
     		{
     			pairCounter++;
     			this.onePairSum = cards.get(i).getValue() + cards.get(i + 1).getValue();
-    			//System.out.println("One pair sum =" + this.onePairSum);
     		}
     		
     	}
@@ -306,7 +264,6 @@ public class PokerHand
     	{
     		isOnePair = true;
     		this.pokerHandRanking = 9;
-    		//System.out.println("One pair!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}
@@ -330,7 +287,6 @@ public class PokerHand
     	{
     		isTwoPairs = true;
     		this.pokerHandRanking = 8;
-    		//System.out.println("Two pairs!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}
@@ -355,7 +311,6 @@ public class PokerHand
     	{
     		isThreeOfAKind = true;
     		this.pokerHandRanking = 7;
-    		//System.out.println("Three of a kind!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}    	
@@ -373,7 +328,6 @@ public class PokerHand
     	{
     		isStraight = true;
     		this.pokerHandRanking = 6;
-    		//System.out.println("Straight!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}
@@ -391,13 +345,10 @@ public class PokerHand
     	{
     		isFlush = true;
     		this.pokerHandRanking = 5;
-    		//System.out.println("Flush!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}   	
-    	
-    	//System.out.println("Ranking = " + this.pokerHandRanking + " Sum of values = " + this.pokerHandSum);
-    	
+    	    	
     	return isFlush;
     }
     
@@ -450,7 +401,6 @@ public class PokerHand
     	{
     		isFullHouse = true;
     		this.pokerHandRanking = 4;
-    		//System.out.println("Full House!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}
@@ -477,7 +427,6 @@ public class PokerHand
     	{
     		isFourOfAKind = true;
     		this.pokerHandRanking = 3;
-    		//System.out.println("Four of a kind!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}
@@ -496,13 +445,10 @@ public class PokerHand
     	{
     		isStraighFlush = true;
     		this.pokerHandRanking = 2;
-    		//System.out.println("Straight Flush!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}
-    	
-    	// System.out.println("Ranking = " + this.pokerHandRanking + " Sum of values = " + this.pokerHandSum);
-    	
+    	    	
     	return isStraighFlush;
     }
     
@@ -527,7 +473,6 @@ public class PokerHand
     	{
     		isRoyalFlush = true;
     		this.pokerHandRanking = 1;
-    		//System.out.println("Royal Flush!");
     		sumAllValues(pokerHand);
     		this.hasRanking = true;
     	}
@@ -568,7 +513,6 @@ public class PokerHand
     	if(ascendingCounter == sortedCards.size() -1)
     	{
     		isAscending = true;
-    		//System.out.println("Cards are ascending!");
     	}
     	
     	return isAscending;
@@ -603,11 +547,7 @@ public class PokerHand
     // Print hand method
     public void printHand(List<Card> cards)
     {
-    	// print all cards
-    	//for(int i = 0; i < cards.size(); i++)
-    	//{
-    		System.out.println(cards.toString());
-    	//}
+    	System.out.println(cards.toString());
     }
     
     public Result checkValues(PokerHand hand)
@@ -664,11 +604,9 @@ public class PokerHand
     				return Result.TIE;
     			}
     			
-    			
     			// Need to check the next card down...
     			int i = 4;
     			do{
-    				System.out.println("Checking next highest card..." + this.pokerHand.get(i).getValue());
     				
     				if(this.pokerHand.get(i).getValue() == hand.pokerHand.get(i).getValue())
     				{
@@ -712,84 +650,26 @@ public class PokerHand
     		
     		if(this.onePairSum == hand.onePairSum)
     		{
-    			
-        			
-    			
-    				return checkValues(hand);
-    			
-    				/*// check values
-        			if(this.pokerHandSum > hand.pokerHandSum)
-        			{
-        				return Result.WIN;
-        			}
-        			if(this.pokerHandSum < hand.pokerHandSum)
-        			{
-        				return Result.LOSS;
-        			}
-        			if(this.pokerHandSum == hand.pokerHandSum)
-        			{
-        				return Result.TIE;
-        			}*/
-        			
-        		
+    			return checkValues(hand); 
     		}
     	}
     	
     	// Check highest two pairs
     	if(this.pokerHandRanking == 8 && hand.pokerHandRanking == 8)
     	{
-    		// check values
-			
-			if(this.pokerHandSum > hand.pokerHandSum)
-			{
-				return Result.WIN;
-			}
-			if(this.pokerHandSum < hand.pokerHandSum)
-			{
-				return Result.LOSS;
-			}
-			if(this.pokerHandSum == hand.pokerHandSum)
-			{
-				return Result.TIE;
-			}
+    		return checkValues(hand);
     	}
     	
     	// Check highest three of a kind
     	if(this.pokerHandRanking == 7 && hand.pokerHandRanking == 7)
     	{
-    		// check values
-			
-			if(this.pokerHandSum > hand.pokerHandSum)
-			{
-				return Result.WIN;
-			}
-			if(this.pokerHandSum < hand.pokerHandSum)
-			{
-				return Result.LOSS;
-			}
-			if(this.pokerHandSum == hand.pokerHandSum)
-			{
-				return Result.TIE;
-			}
+    		return checkValues(hand);
     	}
     	
     	// Check highest three of a kind
     	if(this.pokerHandRanking == 6 && hand.pokerHandRanking == 6)
     	{
-    		// check values
-			
-			if(this.pokerHandSum > hand.pokerHandSum)
-			{
-				return Result.WIN;
-			}
-			if(this.pokerHandSum < hand.pokerHandSum)
-			{
-				return Result.LOSS;
-			}
-			if(this.pokerHandSum == hand.pokerHandSum)
-			{
-				return Result.TIE;
-			}
+    		return checkValues(hand);
     	}
     	
     	if (this.pokerHandRanking == hand.pokerHandRanking && this.pokerHandRanking <= 5) {
@@ -797,17 +677,7 @@ public class PokerHand
 			// will need different conditions depending on the handRanking
 			if (this.pokerHandRanking == hand.pokerHandRanking) {
 				// check pokerHandSum
-				if (this.pokerHandSum > hand.pokerHandSum) {
-					return Result.WIN;
-				}
-
-				if (this.pokerHandSum < hand.pokerHandSum) {
-					return Result.LOSS;
-				}
-
-				if (this.pokerHandSum == hand.pokerHandSum) {
-					return Result.TIE;
-				}
+				return checkValues(hand);
 			}
 		}
 		return Result.TIE;
